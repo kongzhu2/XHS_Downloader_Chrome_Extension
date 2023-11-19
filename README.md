@@ -1,6 +1,6 @@
 <div align="center">
     <img src="XHS_Downloader_Chrome_Extension.gif" alt="XHS_Downloader_Chrome_Extension" height="129" width="134"><br>
-    <h1>小红书作品采集工具</h1>
+    <h1>小红书作品采集工具(浏览器扩展插件)</h1>
     <img alt="GitHub" src="https://img.shields.io/github/license/kongzhu2/XHS_Downloader_Chrome_Extension?style=for-the-badge">
     <img alt="GitHub forks" src="https://img.shields.io/github/forks/kongzhu2/XHS_Downloader_Chrome_Extension?style=for-the-badge&color=c56cf0">
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/kongzhu2/XHS_Downloader_Chrome_Extension?style=for-the-badge&color=fff200">

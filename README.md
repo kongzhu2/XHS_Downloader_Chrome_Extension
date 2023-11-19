@@ -1,6 +1,6 @@
 <div align="center">
-    <img src="XHS_Downloader_Chrome_Extension.gif" alt="XHS_Downloader_Chrome_Extension" height="129" width="134"><br>
-    <h1>小红书作品采集工具-浏览器扩展</h1>
+    <img src="XHS_Downloader_Chrome_Extension_Chrome_ExtensionXHS_Downloader_Chrome_Extension.png" alt="TikTokDownloader" height="256" width="256"><br>
+    <h1>小红书作品采集工具</h1>
     <img alt="GitHub" src="https://img.shields.io/github/license/kongzhu2/XHS_Downloader_Chrome_Extension?style=for-the-badge">
     <img alt="GitHub forks" src="https://img.shields.io/github/forks/kongzhu2/XHS_Downloader_Chrome_Extension?style=for-the-badge&color=c56cf0">
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/kongzhu2/XHS_Downloader_Chrome_Extension?style=for-the-badge&color=fff200">
@@ -10,23 +10,116 @@
     </div>
     <h1>📝 功能清单</h1>
     <ul>
+    <li>采集小红书视频作品信息</li>
+    <li>获取小红书视频作品下载地址</li>
     <li>下载小红书视频作品文件</li>
     </ul>
     <h1>📸 程序截图</h1>
-    
     <br>
     <img src="程序截图.png" alt="">
-    
     <h1>🪟 关于终端</h1>
-    <p>⭐ 推荐使用 <a href="https://www.microsoft.com/zh-cn/edge/download">Edge浏览器</a> （Windows 10及11 自带默认浏览器）运行程序以便获得最佳显示效果！</p>
+    <p>⭐ 推荐使用 <a href="https://www.microsoft.com/zh-cn/edge/download">Edge浏览器</a> （Windows 11 自带默认终端）运行程序以便获得最佳显示效果！</p>
     <h1>🥣 使用方法</h1>
     <p>如果仅需下载作品文件，选择 <b>直接运行</b> 或者 <b>源码运行</b> 均可，如果需要获取作品信息，则需要进行二次开发进行调用。</p>
     <h2>🖱 直接运行</h2>
-    <p>前往 Releases 下载程序压缩包，解压后在浏览器扩展管理页面中加载解压缩的扩展即可使用。</p>
-    
+    <p>前往 Releases 下载程序压缩包，解压后打开程序文件夹，双击运行 <code>main.exe</code> 即可使用。</p>
+    <h2>⌨️ 源码运行</h2>
+    <ol>
+    <li>安装版本号不低于 <code>3.10</code> 的 Python 解释器</li>
+    <li>安装 <code>requirements.txt</code> 包含的第三方模块</li>
+    <li>下载本项目最新的源码或 <code>Releases</code> 发布的源码至本地</li>
+    <li>运行 <code>main.py</code> 即可使用</li>
+    </ol>
     <h2>💻 二次开发</h2>
-    <p>如果想要获取小红书图文/视频作品信息，可以自行进行修改。如不会修改，也可以直接加入我们的交流QQ群<code>948385452 </code>获取其他成品小红书笔记采集软件。</p>
-    
+    <p>如果想要获取小红书图文/视频作品信息，可以根据 <code>main.py</code> 的注释提示进行代码调用。</p>
+    <pre>
+    # 测试链接
+    error_demo = "https://github.com/kongzhu2/XHS_Downloader_Chrome_Extension"
+    image_demo = "https://www.xiaohongshu.com/explore/63b275a30000000019020185"
+    video_demo = "https://www.xiaohongshu.com/explore/64edb460000000001f03cadc"
+    # 实例对象
+    path = ""  # 作品下载储存根路径，默认值：当前路径
+    folder = "Download"  # 作品下载文件夹名称（自动创建），默认值：Download
+    cookie = ""  # 小红书网页版 Cookie
+    proxies = None  # 网络代理
+    timeout = 5  # 网络请求超时限制，默认值：10
+    chunk = 1024 * 1024  # 下载文件时，每次从服务器获取的数据块大小，单位字节
+    xhs = XHS(
+        path=path,
+        folder=folder,
+        cookie=cookie,
+        proxies=proxies,
+        timeout=timeout,
+        chunk=chunk, )  # 使用自定义参数
+    # xhs = XHS()  # 使用默认参数
+    download = True  # 是否下载作品文件
+    # 返回作品详细信息，包括下载地址
+    print(xhs.extract(error_demo))  # 获取数据失败时返回空字典
+    print(xhs.extract(image_demo, download=download))
+    print(xhs.extract(video_demo, download=download))
+    </pre>
+    <h1>⛓ 批量下载</h1>
+    <p>在程序所在文件夹创建一个 <code>xhs.txt</code> 文本文件，然后将待处理的作品链接输入文件，每行输入一个作品链接，编辑完成后保存文件，然后运行程序，点击 <code>读取 xhs.txt 文件并批量下载作品</code> 按钮，程序会批量下载每个链接对应的作品文件。</p>
+    <h1>⚙️ 配置文件</h1>
+    <p>根目录下的 <code>settings.json</code> 文件，可以自定义部分运行参数。</p>
+    <table>
+    <thead>
+    <tr>
+    <th align="center">参数</th>
+    <th align="center">类型</th>
+    <th align="center">含义</th>
+    <th align="center">默认值</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td align="center">path</td>
+    <td align="center">str</td>
+    <td align="center">作品文件储存根路径</td>
+    <td align="center">项目根路径</td>
+    </tr>
+    <tr>
+    <td align="center">folder</td>
+    <td align="center">str</td>
+    <td align="center">作品文件储存文件夹名称</td>
+    <td align="center">Download</td>
+    </tr>
+    <tr>
+    <td align="center">cookie</td>
+    <td align="center">str</td>
+    <td align="center">小红书网页版 Cookie，无需登录；建议自行设置</td>
+    <td align="center">内置 Cookie</td>
+    </tr>
+    <tr>
+    <td align="center">proxies</td>
+    <td align="center">str</td>
+    <td align="center">设置代理</td>
+    <td align="center">无</td>
+    </tr>
+    <tr>
+    <td align="center">timeout</td>
+    <td align="center">int</td>
+    <td align="center">请求数据超时限制，单位：秒</td>
+    <td align="center">10</td>
+    </tr>
+    <tr>
+    <td align="center">chunk</td>
+    <td align="center">int</td>
+    <td align="center">下载文件时，每次从服务器获取的数据块大小，单位：字节</td>
+    <td align="center">262144(256KB)</td>
+    </tr>
+    </tbody>
+    </table>
+    <h1>🌐 Cookie</h1>
+    <ol>
+    <li>打开浏览器（可选无痕模式启动），访问小红书任意网页</li>
+    <li>按 <code>F12</code> 打开开发人员工具</li>
+    <li>选择 <code>控制台</code> 选项卡</li>
+    <li>输入 <code>document.cookie</code> 后回车确认</li>
+    <li>输出内容即为所需 Cookie</li>
+    </ol>
+    <br>
+    <img src="XHS_Downloader_Chrome_Extension_Chrome_Extension获取Cookie.png" alt="">
     <h1>♥️ 支持项目</h1>
     <p>如果 <b>XHS_Downloader_Chrome_Extension</b> 对您有帮助，请考虑为它点个 <b>Star</b> ⭐，感谢您的支持！</p>
     <h1>⚠️ 免责声明</h1>

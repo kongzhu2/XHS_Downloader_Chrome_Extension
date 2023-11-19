@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "小红书笔记视频下载",
+  "description": "方便使用者下载小红书笔记中的视频。",
+  "author": "小红书",
+  "version": "1.0",
+  "icons": {
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon.png"
+    },
+    "default_popup": "popup/index.html",
+    "default_title": "小红书"
+  },
+  "permissions": ["scripting", "activeTab", "downloads"],
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "matches": [
+        "https://www.xiaohongshu.com/explore/*"],
+      "run_at": "document_start"
+    }
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+B",
+        "mac": "Command+B"
+      }
+    }
+  },
+  "update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx"
+}
